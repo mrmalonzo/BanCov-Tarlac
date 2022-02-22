@@ -1,0 +1,114 @@
+GET http://localhost:3000/
+
+### VIEW ALL ADMINS
+GET http://localhost:3000/admin/viewAllAdmins
+
+### VIEW SPECIFIC ADMIN -- key: username
+GET http://localhost:3000/admin/viewAdmin/Pamela
+
+### Add Admin
+POST http://localhost:3000/admin/addAdmin
+Content-Type: application/json
+
+{
+    "name":"Pamela",
+    "password": "Pamela",
+    "username": "Pamela",
+    "email": "Pamela@gmail.com"
+}
+
+###Delete an admin
+DELETE http://localhost:3000/admin/deleteAdmin/Pamela@gmail.com
+
+###Login an Admin 
+POST http://localhost:3000/admin/login
+Content-Type: application/json
+
+{
+    "password": "Pamela",
+    "email": "Pamela@gmail.com"
+}
+
+### Logout Admin
+
+
+### View covid Data
+GET http://localhost:3000/covid/viewAllData
+
+### View current covid Data
+GET http://localhost:3000/covid/viewCurrentData
+
+### View overall covid Data
+GET http://localhost:3000/covid/viewOverallData
+
+### Upload Current Data
+PUT http://localhost:3000/covid/uploadCurrentData
+Content-Type: application/json
+
+{
+  "currentDateUploaded": "2002-03-09T16:00:00.000Z",
+  "currentTotalNewCases": 1,
+  "currentTotalRecoveries": 5,
+  "currentTotalDeaths": 1,
+  "overallActiveCases": 3,
+  "currentNewCasesBreakdown": {
+    "Anao": 0,
+    "Bamban": 0,
+    "Camiling": 2,
+    "Capas": 0,
+    "Concepcion": 2,
+    "Gerona": 0,
+    "Lapaz": 0,
+    "Mayantoc": 0,
+    "Moncada": 0,
+    "Paniqui": 0,
+    "Pura": 0,
+    "Ramos": 0,
+    "San Clemente": 2,
+    "San Jose": 0,
+    "San Manuel": 0,
+    "Santa Ignacia": 0,
+    "Tarlac City": 0,
+    "Victoria": 0
+  },
+  "currentRecoveriesBreakdown": {
+    "Anao": 0,
+    "Bamban": 0,
+    "Camiling": 0,
+    "Capas": 0,
+    "Concepcion": 0,
+    "Gerona": 0,
+    "Lapaz": 0,
+    "Mayantoc": 0,
+    "Moncada": 0,
+    "Paniqui": 0,
+    "Pura": 0,
+    "Ramos": 0,
+    "San Clemente": 0,
+    "San Jose": 0,
+    "San Manuel": 0,
+    "Santa Ignacia": 0,
+    "Tarlac City": 2,
+    "Victoria": 0
+  },
+  "currentDeathsBreakdown": {
+    "Anao": 0,
+    "Bamban": 0,
+    "Camiling": 3,
+    "Capas": 0,
+    "Concepcion": 0,
+    "Gerona": 0,
+    "Lapaz": 0,
+    "Mayantoc": 0,
+    "Moncada": 0,
+    "Paniqui": 0,
+    "Pura": 0,
+    "Ramos": 0,
+    "San Clemente": 0,
+    "San Jose": 0,
+    "San Manuel": 0,
+    "Santa Ignacia": 0,
+    "Tarlac City": 0,
+    "Victoria": 5
+  }
+}
