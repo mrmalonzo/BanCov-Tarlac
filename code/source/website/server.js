@@ -8,15 +8,18 @@ import {admin} from "./routes/admin.js";
 import {data} from "./routes/covidData.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8888;
 
 const uri =
   "mongodb+srv://bancovtarlac:bancovtarlac@cluster0.olpi2.mongodb.net/bancovTarlac?retryWrites=true&w=majority";
 // Database name
 const dbName = "bancovTarlac";
 
-app.use(cookieParser()); //for using cookies
+const __dirname = path.resolve();
 
+app.use(express.static(path.join(__dirname, '../Client/build')));
+
+app.use(cookieParser()); //for using cookies
 app.use(express.json()); //allow body parsing
 app.use(express.text()); //allow text reading
 app.use(express.urlencoded({ extended: true }));

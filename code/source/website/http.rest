@@ -1,13 +1,13 @@
-GET http://localhost:3000/
+GET http://localhost:8888/
 
 ### VIEW ALL ADMINS
-GET http://localhost:3000/admin/viewAllAdmins
+GET http://localhost:8888/admin/viewAllAdmins
 
 ### VIEW SPECIFIC ADMIN -- key: username
-GET http://localhost:3000/admin/viewAdmin/Pamela
+GET http://localhost:8888/admin/viewAdmin/Pamela
 
 ### Add Admin
-POST http://localhost:3000/admin/addAdmin
+POST http://localhost:8888/admin/addAdmin
 Content-Type: application/json
 
 {
@@ -16,16 +16,25 @@ Content-Type: application/json
     "username": "Pamela",
     "email": "Pamela@gmail.com"
 }
-
-###Delete an admin
-DELETE http://localhost:3000/admin/deleteAdmin/Pamela@gmail.com
-
-###Login an Admin 
-POST http://localhost:3000/admin/login
+###Update an admin key -- email
+PUT http://localhost:8888/admin/updateAdmin
 Content-Type: application/json
 
 {
-    "password": "Pamela",
+    "name":"Pamela bebe",
+    "password":"ilovemarlon",
+    "email": "Pamela@gmail.com"
+}
+
+###Delete an admin -- key email
+DELETE http://localhost:8888/admin/deleteAdmin/Pamela@gmail.com
+
+###Login an Admin 
+POST http://localhost:8888/admin/login
+Content-Type: application/json
+
+{
+    "password": "ilovemarlon",
     "email": "Pamela@gmail.com"
 }
 
@@ -33,16 +42,16 @@ Content-Type: application/json
 
 
 ### View covid Data
-GET http://localhost:3000/covid/viewAllData
+GET http://localhost:8888/covid/viewAllData
 
 ### View current covid Data
-GET http://localhost:3000/covid/viewCurrentData
+GET http://localhost:8888/covid/viewCurrentData
 
 ### View overall covid Data
-GET http://localhost:3000/covid/viewOverallData
+GET http://localhost:8888/covid/viewOverallData
 
 ### Upload Current Data
-PUT http://localhost:3000/covid/uploadCurrentData
+PUT http://localhost:8888/covid/uploadCurrentData
 Content-Type: application/json
 
 {
@@ -110,5 +119,36 @@ Content-Type: application/json
     "Santa Ignacia": 0,
     "Tarlac City": 0,
     "Victoria": 5
+  }
+}
+
+### Change Overall covid data
+PUT http://localhost:8888/covid/changeOverallCovidData
+Content-Type: application/json
+
+{
+  "currentTotalNewCases": 10,
+  "currentTotalRecoveries": 25,
+  "currentTotalDeaths": 31,
+  "overallActiveCases": 3,
+   "currentDeathsBreakdown": {
+    "Anao": 0,
+    "Bamban": 0,
+    "Camiling": 3,
+    "Capas": 0,
+    "Concepcion": 0,
+    "Gerona": 0,
+    "Lapaz": 0,
+    "Mayantoc": 0,
+    "Moncada": 0,
+    "Paniqui": 0,
+    "Pura": 0,
+    "Ramos": 0,
+    "San Clemente": 0,
+    "San Jose": 0,
+    "San Manuel": 0,
+    "Santa Ignacia": 0,
+    "Tarlac City": 0,
+    "Victoria": 69
   }
 }

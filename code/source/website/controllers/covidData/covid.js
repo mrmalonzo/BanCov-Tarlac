@@ -64,3 +64,42 @@ export async function uploadCurrentData(req,res){
         }
     }).catch(error => res.status(500).json("Failed to load database"));
 }
+
+//Change Overall covidData
+export async function changeOverallCovidData(req, res){
+    const covidData = req.app.locals.covidData;
+    const body = req.body;
+
+
+    covidData.findOne({})
+    .then(data => { 
+        
+        covidData.findOneAndUpdate({}, //first find the main data changed and set them
+            {$set: 
+                {overallDeaths: (body.overallDeaths ? body.overallDeaths:data.overallDeaths),
+                overallRecoveries: (body.overallRecoveries ? body.overallRecoveries:data.overallRecoveries),
+                currentTotalNewCases: (body.currentTotalNewCases ? body.currentTotalNewCases:data.currentTotalNewCases), 
+                currentTotalRecoveries: (body.currentTotalRecoveries ? body.currentTotalRecoveries:data.currentTotalRecoveries),
+                currentTotalDeaths: (body.currentTotalDeaths ? body.currentTotalDeaths:data.currentTotalDeaths), 
+                overallActiveCases: (body.overallActiveCases ? body.overallActiveCases:data.overallActiveCases),  
+                overallTotalCases: (body.overallTotalCases ? body.overallTotalCases:data.overallTotalCases),
+                historyCovidData: (body.historyCovidData ? body.historyCovidData:data.historyCovidData),//this should be changed 
+                currentNewCasesBreakdown: (body.currentNewCasesBreakdown ? body.currentNewCasesBreakdown:data.currentNewCasesBreakdown),
+                currentRecoveriesBreakdown: (body.currentRecoveriesBreakdown ? body.currentRecoveriesBreakdown:data.currentRecoveriesBreakdown),
+                currentDeathsBreakdown: (body.currentDeathsBreakdown ? body.currentDeathsBreakdown:data.currentDeathsBreakdown),
+                overallActiveCasesBreakdown: (body.overallActiveCasesBreakdown ? body.overallActiveCasesBreakdown:data.overallActiveCasesBreakdown),
+            }} )
+            .then(res.json("Data change uploaded successfully!"))
+           
+          // now upload the changes in the history covid data if there are any  
+        // if(body.covidData){
+        //     let toCreate = body.historyCovidData.map(historyCovidData =>{
+        //         replaceOne:{
+        //             filter:{recordDate: historyCovidData.recordDate}
+        //             replacement:{newCases: historyCovidData.newCases }
+        //         }
+        //     })
+        // }
+
+    }).catch(error => res.status(500).json("Failed to load database"));
+}
