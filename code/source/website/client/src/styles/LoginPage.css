@@ -1,0 +1,142 @@
+
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url('../assets/images/homepage.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:center ;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.login-page{
+   display: flex;
+   margin-top: 7.5vh;
+   justify-content: center;
+   align-items: center;
+}
+
+.login-div{
+    margin: auto;
+    background-color: #E5E5E5;
+    min-height: 85vh;
+    max-width: 45%;
+    border-radius: 3em;
+    flex: 1;
+    margin-right: 0;
+    z-index: 2;
+}
+
+.login-intro-div{
+    margin: auto;
+    background-color: #69A1AF;
+    min-height: 85vh;
+    max-width: 25%;
+    border-radius: 3em;
+    flex: 2;
+    margin-left: -5em;
+    z-index: 1;
+}
+
+.title-login{
+    font-size: 2.3em;
+    margin-top: 1em;
+}
+
+.title-1{
+    color: #69A1AF;
+    font-weight: 200;
+}
+
+.title-2{
+    color: #65C95C;
+    font-weight: 700;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    padding: 1.75em 2em;
+    align-items: center;
+    justify-content: center;
+}
+
+.forms{
+    width: 75%;
+    margin: 0.75em 0em;
+    flex-grow: 1;
+}
+
+.login-label{
+    font-size: 1.3em;
+    font-weight: 400;
+    margin: auto;
+    justify-content: flex-start;
+    margin: auto auto -5% 1% ;
+    display: flex;    
+}
+
+
+.login-admin{
+    background-color: #84C9DB;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    color: #F2F2F2;
+    width: 25%;
+    min-height: 2em;
+    border: 0px;
+    margin-top: 1.75em;
+    border-radius: 0.25em;
+}
+
+button:hover{
+    cursor:pointer;
+    background-color: #69A1AF;
+}
+
+input[type=text],input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.forgot-text{
+    margin-top: 3em;
+}
+
+.forgot-password-linkP{
+    color: #69A1AF;
+}
+
+.login-msg{
+    margin-left: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    height: 75vh;
+    margin-bottom: 3em;
+}
+
+.login-msg-title{
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.login-msg-p{
+    font-size: 1.3rem;
+    font-weight: 100;
+    max-width: 65%;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+

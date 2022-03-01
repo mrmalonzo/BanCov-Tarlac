@@ -90,6 +90,7 @@ export async function deleteAdmin(req, res){
 
 //admin login - jtw token and password encryption
 export async function loginAdmin(req,res){
+    console.log(req.body);
     const adminModel = req.app.locals.admins;
     adminModel.findOne({email: req.body.email}) //find email in the admin
     .then(result => {

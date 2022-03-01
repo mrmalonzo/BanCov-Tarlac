@@ -24,6 +24,26 @@ app.use(express.json()); //allow body parsing
 app.use(express.text()); //allow text reading
 app.use(express.urlencoded({ extended: true }));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
+  );
+  next();
+});
+app.use(
+  cors({
+    allowedHeaders: ["sessionId", "Content-Type"],
+    exposedHeaders: ["sessionId"],
+    origin: ["http://localhost:8888","http://localhost:3000", "http://localhost:3001", "http://54.151.129.218"],
+    methods: ["OPTIONS", "POST", "GET", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+
 let MongoClient = mongodb.MongoClient;
 
 MongoClient.connect(uri) //connect to the database
