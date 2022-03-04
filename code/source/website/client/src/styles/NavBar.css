@@ -1,0 +1,49 @@
+.navbar{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 4em;
+}
+
+.navbar-title{
+    text-decoration: none;
+}
+
+.title-login-navbar{
+    font-size: 2em;
+}
+
+.navbar-title-1{
+    color: #69A1AF;
+    font-weight: 200;
+}
+
+.navbar-title-2{
+    color: #65C95C;
+    font-weight: 700;
+}
+
+.logout-link{
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+.logout-1{
+    font-weight: 700;
+    
+}
+
+.logout-2{
+    text-transform: capitalize;
+}
+
+@media (max-width:40em){
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5em 1em;
+    }
+}

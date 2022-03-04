@@ -8,16 +8,22 @@ const adminLogin = (userData) => {
     });
 }
 
-const successLogin = (tokenId) => {
-    const data = { tokenId: tokenId };
-    return axios.post(`${apiEndpoint}/user/googleLogin`, data, {
-      withCredentials: true,
+const logoutAdmin = (data) =>{
+    return axios.post(`${apiEndpoint}/admin/logout`, data, {
+        withCredentials: true,
     });
-};
+}
+
+const getCurrentData = () => {
+    return axios.get(`${apiEndpoint}/covid/viewCurrentData`);
+}
+
+
   
 const httpServices = {
-   successLogin,
-   adminLogin
+   adminLogin,
+   getCurrentData,
+   logoutAdmin,
   };
   
   export default httpServices;

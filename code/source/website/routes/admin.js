@@ -1,6 +1,6 @@
 import express from "express";
 
-import {viewAllAdmins, viewAdmin, addAdmin, deleteAdmin, loginAdmin, updateAdmin} from "../controllers/admins/admin.js";
+import {viewAllAdmins, viewAdmin, addAdmin, deleteAdmin, loginAdmin, updateAdmin, adminLogout} from "../controllers/admins/admin.js";
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.post('/addAdmin', addAdmin);
 router.put('/updateAdmin', updateAdmin);
 router.delete('/deleteAdmin/:email', deleteAdmin);
 router.post('/login', loginAdmin);
+router.post('/logout', adminLogout)
 
 export {router as admin};

@@ -1,0 +1,61 @@
+.footer{
+    background-color: #69A1AF;
+    text-align: left;
+    padding: 0.5em 1em;
+}
+
+.footer-title{
+    font-size: 1.75em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-title-1{
+    color: #F2F2F2;
+    font-weight: 200;
+}
+
+.footer-title-2{
+    color: #65C95C;
+    font-weight: 700;
+}
+
+.footer-p{
+    color: #FFFFFF;
+    font-size: 0.75em;
+    font-weight: 200;
+}
+
+.footer-contact{
+   font-size: 0.75em;
+}
+
+.footer-contact-title{
+    color: #F2F2F2;
+    margin-bottom: 0;
+}
+
+.footer-contact-details{
+    margin-top: 0;
+    color: #FFFFFF;
+    font-weight: 200;
+}
+
+@media(min-width:40em){
+    .footer{
+       display:flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 1em 4em;
+    }
+    
+    .footer-p{
+        font-size: 1em;
+        max-width: 50%;
+    }
+    
+    .footer-contact{
+       font-size: 0.95em;
+       text-align: right;
+    }
+}
+

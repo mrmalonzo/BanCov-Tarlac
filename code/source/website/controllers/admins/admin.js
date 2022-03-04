@@ -90,7 +90,7 @@ export async function deleteAdmin(req, res){
 
 //admin login - jtw token and password encryption
 export async function loginAdmin(req,res){
-    console.log(req.body);
+    // console.log(req.body);
     const adminModel = req.app.locals.admins;
     adminModel.findOne({email: req.body.email}) //find email in the admin
     .then(result => {
@@ -125,10 +125,12 @@ export async function adminLogout(req, res) {
     try {
       return res
         .cookie("auth", "", { httpOnly: false, expires: new Date(0) })
-        .send("User Logged out"); //replace token with empty token that expires in 1 sec
+        .json("User Logged out"); //replace token with empty token that expires in 1 sec
       // res.status(200).json("Succesfully logged out.");
       // res.redirect("http://localhost:3000/");
-    } catch (err) {}
+    } catch (err) {
+        res.status(404)
+    }
 };
 
 
