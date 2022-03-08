@@ -71,7 +71,7 @@ button:hover{
     color: #F2F2F2;
 }
 
-input[type=text],input[type=password] {
+.login-page input[type=text],.login-page input[type=password] {
     width: 90%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -182,7 +182,7 @@ input[type=text],input[type=password] {
      }
      
      
-     input[type=text],input[type=password] {
+     .login-page input[type=text],.login-page input[type=password] {
          width: 100%;
      }
      

@@ -11,7 +11,7 @@ function MainPage({userInfo, setUserInfo}) {
 
   function handleClick(e){
     if(e.target.name === "manage") return window.location = "/manage-admin";
-    if(e.target.nem === "upload") return window.location = "/upload-data";
+    if(e.target.name === "upload") return window.location = "/upload-data";
     return window.location = "/modify-data"; //if the modify button was clicked
   }
 

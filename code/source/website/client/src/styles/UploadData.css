@@ -1,0 +1,136 @@
+.uploads{
+    background-color: white;
+    height: 100%;
+    margin:0;
+    padding: 0;
+}
+
+.uploads-title{
+    font-weight: 200;
+    font-size: 1.75em;
+}
+
+.uploads-date{
+    font-size: 1.25em;
+    color: #65C95C;
+    font-weight: 600;
+}
+
+.uploads-today{
+    color: black;
+    font-weight: 400;
+}
+
+.uploads-main{
+    border: 1px solid black;
+    border-radius: 2em;
+    margin: 0.5em 2em;
+    background-color: white;
+}
+
+.up-main-h2{
+    font-size: 2em;
+}
+
+.up-main-span{
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.upload-case-form{
+    margin: 2em 1em ;
+}
+
+.section-div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.upload-case-label{
+    font-size: 1.25em;
+    text-align: left;
+}
+
+.uploads input[type=text]{
+    background-color: #F2F2F2;
+    display: inline-block;
+    border: 1px solid #84C9DB;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.upload-newcases{
+    background-color: #84C9DB;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    color: #F2F2F2;
+    width: 20%;
+    min-height: 3em;
+    border: 0px;
+    margin-top: 1em;
+    border-radius: 0.25em;
+}
+
+@media (min-width:40em) {
+    .uploads-label{
+        display: flex;
+        justify-content: space-between;
+        padding: 2em 4em;
+    }
+
+    .uploads-title{
+        max-width: 30%;
+        text-align: left;
+        padding: 0%;
+        margin: 0;
+    }
+    
+    .uploads-date{
+        padding: 0%;
+        margin: 0;
+        align-self: flex-end;
+    }
+
+    .uploads-main-title{
+        margin: 0.5em 4em;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .up-main-h2{
+        margin-right: 2em;
+    }
+    
+    .up-main-span{
+        margin-top: 0.5em;
+    }
+    
+    
+    .upload-flex{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .section-1,.section-2{
+        width: 40%;
+    }
+
+    .section-div{
+        display: flex;
+        margin-bottom: 1.75em;
+    }
+
+    .upload-case-label{
+        font-size: 1.5em;
+        width: 85%;
+    }
+
+    .uploads input[type=text]{
+       width: 100%;
+    }
+    
+}

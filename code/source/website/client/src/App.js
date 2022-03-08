@@ -43,10 +43,10 @@ function App() {
       <Route path="/" element={<LandingPage userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
-      <Route path="/main-page" onEnter={checkUser} element={<MainPage userInfo = {userInfo} setUserInfo={setUserInfo}/>}/>
-      <Route path="/manage-admin" element={<ManageAdmin />} />
-      <Route path="/upload-data" element={<UploadData />} />
-      <Route path="/modify-data" element={<ModifyData />} />
+      <Route path="/main-page" element={<MainPage userInfo = {userInfo} setUserInfo={setUserInfo}/>}/>
+      <Route path="/manage-admin" element={<ManageAdmin userInfo = {userInfo} setUserInfo={setUserInfo} />} />
+      <Route path="/upload-data" element={<UploadData userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
+      <Route path="/modify-data" element={<ModifyData userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
     </Routes>   
   :
 
