@@ -52,7 +52,7 @@
     text-align: left;
 }
 
-.uploads input[type=text]{
+.uploads input[type=number]{
     background-color: #F2F2F2;
     display: inline-block;
     border: 1px solid #84C9DB;
@@ -63,7 +63,7 @@
 }
 
 .upload-newcases{
-    background-color: #84C9DB;
+    /* background-color: #84C9DB; */
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
     color: #F2F2F2;

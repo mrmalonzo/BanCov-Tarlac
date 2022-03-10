@@ -18,6 +18,9 @@ function MainPage({userInfo, setUserInfo}) {
   useEffect(() => {
     async function getCurrentData(){
       try {
+        //clean the storage first
+        localStorage.removeItem('cases')
+        localStorage.removeItem('recoveries')
         const { data } = await httpServices.getCurrentData();
         await setCurrentDate(data)
       } catch (error) {

@@ -12,10 +12,15 @@ import MainPage from './pages/MainPage';
 import ForgotPassword from './pages/ForgotPassword';
 import ManageAdmin from "./pages/ManageAdmin";
 import UploadData from "./pages/UploadData";
+import UploadRecoveries from "./pages/UploadRecoveries";
+import UploadDeaths from "./pages/UploadDeaths"
 import ModifyData from "./pages/ModifyData";
 
 function App() {
   const [userInfo, setUserInfo] = useState("");
+  const [covidCases, setCovidCases] = useState("");
+  const [covidRecoveries, setCovidRecoveries] = useState("");
+
 
   useEffect(() => {
     async function getUser(){
@@ -25,16 +30,23 @@ function App() {
         await setUserInfo(foundUser);
       }
     }
+
+    async function setData(){
+      const cases = localStorage.getItem("cases");
+      const recoveries = localStorage.getItem("recoveries");
+
+      if(cases){
+        await setCovidCases(JSON.parse(cases));
+      }
+      if(recoveries){
+        await setCovidRecoveries(JSON.parse(recoveries));
+      }
+    }
     getUser();
+    setData();
   }, []);
 
-  function checkUser(nextState, replace, next) { //check
-    const LoggedUser = localStorage.getItem("user");
-    if (!LoggedUser){
-      window.location = "/";
-    }
-    next();
-  }
+
 
   //user should be logged in to have access to all the pages
   const Pages = (userInfo!==""? 
@@ -44,9 +56,14 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="/main-page" element={<MainPage userInfo = {userInfo} setUserInfo={setUserInfo}/>}/>
+      
       <Route path="/manage-admin" element={<ManageAdmin userInfo = {userInfo} setUserInfo={setUserInfo} />} />
-      <Route path="/upload-data" element={<UploadData userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
-      <Route path="/modify-data" element={<ModifyData userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
+      
+      <Route path="/upload-data" element={<UploadData userInfo = {userInfo} setUserInfo={setUserInfo} covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries} />} />
+      <Route path="/upload-recoveries" element={<UploadRecoveries userInfo = {userInfo} setUserInfo={setUserInfo} covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries}/>} />
+      <Route path="/upload-deaths" element={<UploadDeaths userInfo = {userInfo} setUserInfo={setUserInfo} covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries} />} />
+      
+      <Route path="/modify-data" element={<ModifyData userInfo = {userInfo} setUserInfo={setUserInfo} />} />
     </Routes>   
   :
 
