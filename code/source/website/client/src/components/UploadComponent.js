@@ -9,7 +9,7 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
 const newCasesObject = {"anao":0,"bamban":0,"camiling":0,"capas":0,"concepcion":0,"gerona":0,"lapaz":0,"mayantoc":0,"moncada":0,"paniqui":0,"pura":0,"ramos":0,"sanclemente":0, "sanjose":0,"sanmanuel":0,"santaignacia":0,"tarlac":0,"victoria":0,}
 
-export default function UploadComponents({covidCases, setCovidCases, covidRecoveries, setCovidRecoveries, nextPage, title, proceed}){
+export default function UploadComponents({covidCases, setCovidCases, covidRecoveries, setCovidRecoveries, covidDeaths, setCovidDeaths, nextPage, title, proceed}){
     
     useEffect(()=>{ //set covid data to empty for the initial render of the page
         async function initialRender(){
@@ -21,6 +21,10 @@ export default function UploadComponents({covidCases, setCovidCases, covidRecove
             if(title === "NEW RECOVERIES"){ 
                 localStorage.removeItem('recoveries')
                 return await setCovidRecoveries(reset);
+            }
+            if(title === "NEW DEATHS"){ 
+                localStorage.removeItem('deaths')
+                return await setCovidDeaths(reset);
             }
         };
         initialRender();
@@ -35,27 +39,46 @@ export default function UploadComponents({covidCases, setCovidCases, covidRecove
     async function handleSubmit(e){
         if(title === "NEW CASES"){
             localStorage.setItem("cases", JSON.stringify(newCasesObject));
-        } 
-        else if(title === "NEW RECOVERIES"){
+            e.preventDefault();
+            window.location = nextPage;
+        }else if(title === "NEW RECOVERIES"){
             localStorage.setItem("recoveries", JSON.stringify(newCasesObject));
+            e.preventDefault();
+            window.location = nextPage;
+        }else if(title === "NEW DEATHS"){
+            localStorage.setItem("deaths", JSON.stringify(newCasesObject));
+            e.preventDefault();
+            window.location = nextPage;
         } 
         else { // if this is the final page, then get ready to send the data to the backend
             try{
-                const { data } = await httpServices.uploadCurrentData({date, covidCases, covidRecoveries, newCasesObject});
-                // message.success("Covid Data Uploaded Successfully!");
+                e.preventDefault();
+                await httpServices.uploadCurrentData({date, covidCases, covidRecoveries, covidDeaths, newCasesObject});
+                message.success("Covid Data Uploaded Successfully!")
+                window.location = nextPage;
             }catch(error){
-                // message.error(`${error.response.data}`)
+                message.error(`${error.response.data}`);
             }
         }
-        console.log(nextPage)
-        e.preventDefault();
-        window.location = nextPage;
     }
 
-    var color;
-    if(title === "NEW CASES") color = "#84C9DB"
-    else if(title === "NEW RECOVERIES") color = "#FF6961"
-    else color = "#65C95C"
+    var color, lineColor;
+    if(title === "NEW CASES"){
+        color = "#84C9DB"
+        lineColor = "#84C9DB"
+
+    }
+    else if(title === "NEW RECOVERIES"){
+        color = "#FF6961"
+        lineColor = "#65C95C"
+    } 
+    else if (title === "NEW DEATHS"){
+        color = "#FFB347"
+        lineColor = "#FF6961"
+    }else{
+        color = "#65C95C"
+        lineColor = "#FFB347"
+    }
 
     return(     
         <div className="uploads">
@@ -65,7 +88,7 @@ export default function UploadComponents({covidCases, setCovidCases, covidRecove
             </div>
             <div className="uploads-main">
                 <div className="uploads-main-title">
-                    <h2 className="up-main-h2">{title}</h2>
+                    <h2 className="up-main-h2" style={{color: lineColor}}>{title}</h2>
                     <span className="up-main-span">*leave blank if no new cases</span>
                 </div>
                 <form className="upload-case-form"  onSubmit={handleSubmit}>

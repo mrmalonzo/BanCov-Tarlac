@@ -9,7 +9,7 @@ export default function UploadData({userInfo, setUserInfo, covidCases, setCovidC
     return(     
         <div className="uploads">
             <NavBar userInfo={userInfo} setUserInfo={setUserInfo}/>
-            <UploadComponents covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries} nextPage="/upload-deaths" title ="NEW RECOVERIES" proceed = "Proceed to Deaths - >"/>
+            <UploadComponents covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries} covidDeaths={covidDeaths} setCovidDeaths={setCovidDeaths} nextPage="/upload-deaths" title ="NEW RECOVERIES" proceed = "Proceed to Deaths - >"/>
             <Footer />
         </div>
     );

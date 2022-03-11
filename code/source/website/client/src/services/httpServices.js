@@ -19,12 +19,14 @@ const getCurrentData = () => {
 }
 
 const uploadCurrentData = (data) => {
-    // return axios.get(`${apiEndpoint}/covid/uploadCurrentData`, data, {
-    //     withCredentials: true,
-    // });
-    return console.log(data);
-    //follow http rest, count all the cases, recoveries and deaths
-    //figure out what to do with active cases. Subtract the recovies and deaths to the yesterday's active cases???
+    const covidData = {"currentDateUploaded": data.date,
+     "currentNewCasesBreakdown": data.covidCases,
+      "currentRecoveriesBreakdown": data.covidRecoveries, 
+      "currentDeathsBreakdown": data.covidDeaths,
+       "overallActiveCasesBreakdown": data.newCasesObject }
+    return axios.put(`${apiEndpoint}/covid/uploadCurrentData`, covidData, {
+        withCredentials: true,
+    });
 }
 
 

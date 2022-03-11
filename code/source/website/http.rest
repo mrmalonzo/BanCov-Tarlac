@@ -38,7 +38,7 @@ Content-Type: application/json
     "email": "Pamela@gmail.com"
 }
 
-### Logout Admin
+### Logout Admind
 
 
 ### View covid Data
@@ -55,11 +55,7 @@ PUT http://localhost:8888/covid/uploadCurrentData
 Content-Type: application/json
 
 {
-  "currentDateUploaded": "2002-03-09T16:00:00.000Z",
-  "currentTotalNewCases": 1,
-  "currentTotalRecoveries": 5,
-  "currentTotalDeaths": 1,
-  "overallActiveCases": 3,
+  "currentDateUploaded": "2003-03-09T16:00:00.000Z",
   "currentNewCasesBreakdown": {
     "Anao": 0,
     "Bamban": 0,
@@ -101,6 +97,26 @@ Content-Type: application/json
     "Victoria": 0
   },
   "currentDeathsBreakdown": {
+    "Anao": 0,
+    "Bamban": 0,
+    "Camiling": 3,
+    "Capas": 0,
+    "Concepcion": 0,
+    "Gerona": 0,
+    "Lapaz": 0,
+    "Mayantoc": 0,
+    "Moncada": 0,
+    "Paniqui": 0,
+    "Pura": 0,
+    "Ramos": 0,
+    "San Clemente": 0,
+    "San Jose": 0,
+    "San Manuel": 0,
+    "Santa Ignacia": 0,
+    "Tarlac City": 0,
+    "Victoria": 5
+  },
+  "overallActiveCasesBreakdown": {
     "Anao": 0,
     "Bamban": 0,
     "Camiling": 3,

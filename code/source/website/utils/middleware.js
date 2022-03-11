@@ -6,6 +6,16 @@ export function validateEmail(email)
         return re.test(email);
     }
 
+export function sumValues( obj ) { //summation of values in an object
+  var sum = 0;
+  for( var el in obj ) {
+    if( obj.hasOwnProperty( el ) ) {
+      sum += parseFloat( obj[el] );
+    }
+  }
+  return sum;
+}
+
 export function authorizeUser(req, res, next) {
         //function that checks if user is authorized to access the API
         // console.log(req.user._id)

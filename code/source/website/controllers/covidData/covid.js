@@ -1,3 +1,5 @@
+import { sumValues } from "../../utils/middleware.js";
+
 export async function viewAllData(req, res){
     const covidData = req.app.locals.covidData;
 
@@ -37,8 +39,10 @@ export async function uploadCurrentData(req,res){
         const lastDateUploaded = new Date(data.currentDateUploaded);
         const currentDate = new Date(body.currentDateUploaded);
 
+        //comment for testing
         if(lastDateUploaded.getTime() !== currentDate.getTime() && currentDate.getTime() >= lastDateUploaded.getTime()){//current date uploaded should not be the same and should be further than the previous data uploaded
-            //upload previous current data to history covid data
+        // if(true){    
+        //upload previous current data to history covid data
             const recordDate = lastDateUploaded;
             const newCases = data.currentTotalNewCases;
             const newDeaths = data.currentTotalDeaths;
@@ -48,10 +52,24 @@ export async function uploadCurrentData(req,res){
             covidData.updateOne({}, {$push:{historyCovidData:{recordDate:recordDate, newCases:newCases, newDeaths:newDeaths, newRecoveries:newRecoveries, activeCases:activeCases}}})
             .then(console.log("Previous current covid data uploaded to history"));
 
+            //find the overall counts of the ff
+            const currentTotalNewCases = sumValues(body.currentNewCasesBreakdown);
+            const currentTotalRecoveries = sumValues(body.currentRecoveriesBreakdown);
+            const currentTotalDeaths = sumValues(body.currentDeathsBreakdown);
+            const overallActiveCases = sumValues(body.overallActiveCasesBreakdown);
+
             covidData.findOneAndUpdate({}, 
                 // set all attributes
                 {$set: 
-                    {currentDateUploaded:currentDate,currentTotalNewCases: body.currentTotalNewCases, currentTotalRecoveries:body.currentTotalRecoveries, currentTotalDeaths:body.currentTotalDeaths, overallActiveCases: body.overallActiveCases, currentNewCasesBreakdown: body.currentNewCasesBreakdown, currentRecoveriesBreakdown: body.currentRecoveriesBreakdown, currentDeathsBreakdown: body.currentDeathsBreakdown}
+                    {currentDateUploaded:currentDate,currentTotalNewCases: currentTotalNewCases,
+                         currentTotalRecoveries:currentTotalRecoveries,
+                          currentTotalDeaths:currentTotalDeaths,
+                           overallActiveCases:overallActiveCases,
+                            currentNewCasesBreakdown: body.currentNewCasesBreakdown,
+                             currentRecoveriesBreakdown: body.currentRecoveriesBreakdown, 
+                             currentDeathsBreakdown: body.currentDeathsBreakdown,
+                            overallActiveCasesBreakdown: body.overallActiveCasesBreakdown
+                            }
                 }, 
                 // ensures that it will update existing entries and create a new one if there is none yet
                 {upsert: true})
@@ -60,7 +78,7 @@ export async function uploadCurrentData(req,res){
                 }).catch(()=>{ return res.status(500).json("Failed to update your covid database")})
         }
         else{
-            return res.status(400).json("Upload date should not be the same and should be greater than the previous upload date");
+            return res.status(400).json("You've already uploaded today! Go to the Modify Page if you want to change the Covid data for today");
         }
     }).catch(error => res.status(500).json("Failed to load database"));
 }
