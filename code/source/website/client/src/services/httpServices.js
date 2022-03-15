@@ -29,13 +29,39 @@ const uploadCurrentData = (data) => {
     });
 }
 
+const viewAllAdmins = () => {
+    return axios.get(`${apiEndpoint}/admin/viewAllAdmins`, {
+        withCredentials: true,
+    });
+}
 
+const addAdmin = (data) => {
+    return axios.post(`${apiEndpoint}/admin/addAdmin`, data, {
+        withCredentials: true,
+    });
+}
+
+const updateAdmin = (data) =>{
+    return axios.put(`${apiEndpoint}/admin/updateAdmin`, data, {
+        withCredentials: true,
+    });
+}
+
+const deleteAdmin = data =>{
+    return axios.delete(`${apiEndpoint}/admin/deleteAdmin/${data.email}`,{
+        withCredentials: true,
+    });
+}
   
 const httpServices = {
    adminLogin,
    getCurrentData,
    logoutAdmin,
-   uploadCurrentData
+   uploadCurrentData,
+   addAdmin,
+    viewAllAdmins,
+    updateAdmin,
+    deleteAdmin
   };
   
   export default httpServices;
