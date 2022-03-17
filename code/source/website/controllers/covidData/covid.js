@@ -88,7 +88,6 @@ export async function changeOverallCovidData(req, res){
     const covidData = req.app.locals.covidData;
     const body = req.body;
 
-
     covidData.findOne({})
     .then(data => { 
         
@@ -101,7 +100,7 @@ export async function changeOverallCovidData(req, res){
                 currentTotalDeaths: (body.currentTotalDeaths ? body.currentTotalDeaths:data.currentTotalDeaths), 
                 overallActiveCases: (body.overallActiveCases ? body.overallActiveCases:data.overallActiveCases),  
                 overallTotalCases: (body.overallTotalCases ? body.overallTotalCases:data.overallTotalCases),
-                historyCovidData: (body.historyCovidData ? body.historyCovidData:data.historyCovidData),//this should be changed 
+                // historyCovidData: (body.historyCovidData ? body.historyCovidData:data.historyCovidData),//this should be changed 
                 currentNewCasesBreakdown: (body.currentNewCasesBreakdown ? body.currentNewCasesBreakdown:data.currentNewCasesBreakdown),
                 currentRecoveriesBreakdown: (body.currentRecoveriesBreakdown ? body.currentRecoveriesBreakdown:data.currentRecoveriesBreakdown),
                 currentDeathsBreakdown: (body.currentDeathsBreakdown ? body.currentDeathsBreakdown:data.currentDeathsBreakdown),

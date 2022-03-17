@@ -52,6 +52,19 @@ const deleteAdmin = data =>{
         withCredentials: true,
     });
 }
+
+const viewAllData = () => {
+    return axios.get(`${apiEndpoint}/covid/viewAllData`, {
+        withCredentials: true,
+    });
+}
+
+const updateData = (data) =>{
+
+    return axios.put(`${apiEndpoint}/covid/changeOverallCovidData`, data, {
+        withCredentials: true,
+    });
+}
   
 const httpServices = {
    adminLogin,
@@ -61,7 +74,9 @@ const httpServices = {
    addAdmin,
     viewAllAdmins,
     updateAdmin,
-    deleteAdmin
+    deleteAdmin,
+    viewAllData,
+    updateData
   };
   
   export default httpServices;

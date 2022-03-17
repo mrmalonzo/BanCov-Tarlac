@@ -174,7 +174,7 @@ export default function ManageAdmin({userInfo, setUserInfo}){
                             })
                     }}
                 />
-            </div>}
+            </div>} 
             <Footer />
         </div>
     );
