@@ -30,7 +30,8 @@ export default function ModifyData({userInfo, setUserInfo}){
             console.log(mainData)
             await httpServices.updateData(mainData);
             message.success("Covid Data Updated Successfully!")
-            // window.location = "main-page";
+            setTimeout(5000)
+            window.location = "modify-history";
         }catch(error){
             message.error(`${error.response.data}`);
         }

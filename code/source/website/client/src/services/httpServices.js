@@ -65,6 +65,13 @@ const updateData = (data) =>{
         withCredentials: true,
     });
 }
+
+const updateHistory = (data) =>{
+
+    return axios.put(`${apiEndpoint}/covid/updateCovidHistory`, data, {
+        withCredentials: true,
+    });
+}
   
 const httpServices = {
    adminLogin,
@@ -76,7 +83,8 @@ const httpServices = {
     updateAdmin,
     deleteAdmin,
     viewAllData,
-    updateData
+    updateData,
+    updateHistory
   };
   
   export default httpServices;

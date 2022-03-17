@@ -120,3 +120,23 @@ export async function changeOverallCovidData(req, res){
 
     }).catch(error => res.status(500).json("Failed to load database"));
 }
+
+//Change history covidData
+export async function updateCovidHistory(req, res){
+    const covidData = req.app.locals.covidData;
+    const body = req.body;
+
+    //parse all the necessary data for the database
+    const data = {recordDate:new Date(body.recordDate),
+        newCases: parseInt(body.newCases),
+        newDeaths: parseInt(body.newDeaths),
+        newRecoveries: parseInt(body.newRecoveries),
+        activeCases: parseInt(body.activeCases)
+    }
+
+    covidData.updateMany(
+        { "historyCovidData.recordDate": data.recordDate }, 
+        { "$set": { "historyCovidData.$": data} }
+    ).then(res.json("Covid History changed successfully!"))
+    .catch(error => res.status(500).json("Failed to load database"));
+}

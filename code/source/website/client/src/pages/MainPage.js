@@ -6,8 +6,13 @@ import 'antd/lib/message/style/index.css';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 function MainPage({userInfo, setUserInfo}) {
   const [currentDate, setCurrentDate] = useState("");
+  const [loading, setLoading] = useState(true);
 
   function handleClick(e){
     if(e.target.name === "manage") return window.location = "/manage-admin";
@@ -17,15 +22,20 @@ function MainPage({userInfo, setUserInfo}) {
 
   useEffect(() => {
     async function getCurrentData(){
+      setLoading(true)
       try {
         //clean the storage first
         localStorage.removeItem('cases')
         localStorage.removeItem('recoveries')
         const { data } = await httpServices.getCurrentData();
-        await setCurrentDate(data)
+
+        var today = new Date(data.currentDateUploaded);
+        var date = monthNames[(today.getMonth())]+': '+today.getDate()+', '+today.getFullYear();
+        setCurrentDate(date)
       } catch (error) {
         message.error(`${error.response.data}`)
       }
+      setLoading(false)
     }
     getCurrentData();
   }, []);
@@ -36,7 +46,7 @@ function MainPage({userInfo, setUserInfo}) {
       <div className='hero-banner'>
         <h1 className="hero-banner-title"><span className="hero-banner-welcome">Welcome,  </span><span className="hero-banner-admin">Admin!</span></h1>
       </div>
-      <div className='main-content'>
+      {!loading && <div className='main-content'>
         <div className='main'>
           <h2 className='main-title'>Manage Admin Accounts</h2>
           <button className='manage' name='manage' onClick={handleClick}>MANAGE</button>
@@ -45,7 +55,7 @@ function MainPage({userInfo, setUserInfo}) {
           <h2 className='main-title' id="main-upload">Upload Covid-19 Data for today</h2>
           <div className='date'>
             <button className='upload' name='upload'  onClick={handleClick}>UPLOAD</button>
-            <p className='upload-date'><span className='current-date'>Current Upload Date</span><br></br><span className='current-date-det'>{currentDate.currentDateUploaded}</span></p>
+            <p className='upload-date'><span className='current-date'>Current Upload Date</span><br></br><span className='current-date-det'>{currentDate}</span></p>
           </div>
         </div>
         <div className='main'>
@@ -53,7 +63,7 @@ function MainPage({userInfo, setUserInfo}) {
           <button className='modify' name='modify'  onClick={handleClick}>MODIFY</button>
 
         </div >
-      </div>
+      </div>}
       <Footer />
     </div>
   );

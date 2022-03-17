@@ -4,8 +4,11 @@ import 'antd/lib/message/style/index.css';
 import { message } from "antd";
 import httpServices from "../services/httpServices.js";
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var date =  monthNames[(today.getMonth())]+': '+today.getDate()+', '+today.getFullYear();
 
 const newCasesObject = {"anao":0,"bamban":0,"camiling":0,"capas":0,"concepcion":0,"gerona":0,"lapaz":0,"mayantoc":0,"moncada":0,"paniqui":0,"pura":0,"ramos":0,"sanclemente":0, "sanjose":0,"sanmanuel":0,"santaignacia":0,"tarlac":0,"victoria":0,}
 

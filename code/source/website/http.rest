@@ -41,7 +41,7 @@ Content-Type: application/json
 ### Logout Admind
 
 
-### View covid Data
+### View ALL covid Data
 GET http://localhost:8888/covid/viewAllData
 
 ### View current covid Data
@@ -167,4 +167,16 @@ Content-Type: application/json
     "Tarlac City": 0,
     "Victoria": 69
   }
+}
+
+###Change covid History
+PUT http://localhost:8888/covid/updateCovidHistory
+Content-Type: application/json
+
+{
+"recordDate":"2001-01-09T16:00:00.000+00:00",
+"newCases":"5",
+"newDeaths":"5",
+"newRecoveries":"7",
+"activeCases":"3"
 }

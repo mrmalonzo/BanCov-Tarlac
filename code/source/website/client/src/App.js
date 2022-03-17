@@ -16,20 +16,24 @@ import UploadRecoveries from "./pages/UploadRecoveries";
 import UploadDeaths from "./pages/UploadDeaths"
 import ModifyData from "./pages/ModifyData";
 import UploadActive from './pages/UploadActive';
+import UpdateHistory from './pages/UpdateHistory';
 
 function App() {
   const [userInfo, setUserInfo] = useState("");
   const [covidCases, setCovidCases] = useState("");
   const [covidRecoveries, setCovidRecoveries] = useState("");
   const [covidDeaths, setCovidDeaths] = useState("");
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
     async function getUser(){
+      setLoading(true)
       const loggedInUser = localStorage.getItem("user");
       if (loggedInUser) {
         const foundUser = JSON.parse(loggedInUser);
         await setUserInfo(foundUser);
+        setLoading(false)
       }
     }
 
@@ -55,7 +59,7 @@ function App() {
 
 
   //user should be logged in to have access to all the pages
-  const Pages = (userInfo!==""? 
+  const Pages = (!loading && userInfo!==""? 
 
     <Routes>
       <Route path="/" element={<LandingPage userInfo = {userInfo} setUserInfo={setUserInfo}/>} />
@@ -71,6 +75,8 @@ function App() {
       <Route path="/upload-active" element={<UploadActive userInfo = {userInfo} setUserInfo={setUserInfo} covidCases={covidCases} setCovidCases={setCovidCases} covidRecoveries={covidRecoveries} setCovidRecoveries={setCovidRecoveries} covidDeaths={covidDeaths} setCovidDeaths={setCovidDeaths}/>} />
       
       <Route path="/modify-data" element={<ModifyData userInfo = {userInfo} setUserInfo={setUserInfo} />} />
+      <Route path="/modify-history" element={<UpdateHistory userInfo = {userInfo} setUserInfo={setUserInfo} />} />
+
     </Routes>   
   :
 

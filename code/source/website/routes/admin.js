@@ -1,14 +1,15 @@
 import express from "express";
 
 import {viewAllAdmins, viewAdmin, addAdmin, deleteAdmin, loginAdmin, updateAdmin, adminLogout} from "../controllers/admins/admin.js";
+import { authenticateToken } from "../utils/middleware.js";
 
 const router = express.Router();
 
-router.get('/viewAllAdmins', viewAllAdmins);
-router.get('/viewAdmin/:username', viewAdmin);
-router.post('/addAdmin', addAdmin);
-router.put('/updateAdmin', updateAdmin);
-router.delete('/deleteAdmin/:email', deleteAdmin);
+router.get('/viewAllAdmins', authenticateToken, viewAllAdmins);
+router.get('/viewAdmin/:username',authenticateToken, viewAdmin);
+router.post('/addAdmin', authenticateToken, addAdmin);
+router.put('/updateAdmin', authenticateToken, updateAdmin);
+router.delete('/deleteAdmin/:email', authenticateToken, deleteAdmin);
 router.post('/login', loginAdmin);
 router.post('/logout', adminLogout)
 

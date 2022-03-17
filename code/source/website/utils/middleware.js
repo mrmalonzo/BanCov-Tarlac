@@ -16,22 +16,6 @@ export function sumValues( obj ) { //summation of values in an object
   return sum;
 }
 
-export function authorizeUser(req, res, next) {
-        //function that checks if user is authorized to access the API
-        // console.log(req.user._id)
-        const userModel = req.app.locals.users;
-    
-        userModel
-          .findOne({ _id: ObjectId(req.user._id) })
-          .then((user) => {
-            if (user.role === "admin") return next(); //user is an admin and can use this function
-            return res.status(403).json("User has no access to this API");
-          })
-          .catch((error) => {
-            res.status(500).json(error);
-          });
-    }
-    
 export function generateAccessToken(user_id){ //function that creates a jwt token
       return jwt.sign(
         { _id: user_id },

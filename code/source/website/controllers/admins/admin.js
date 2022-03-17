@@ -1,5 +1,4 @@
-import { ObjectId } from "mongodb";
-import {validateEmail, generateAccessToken, authorizeUser} from "../../utils/middleware.js"
+import {validateEmail, generateAccessToken} from "../../utils/middleware.js"
 
 //view all the admins
 export async function viewAllAdmins(req,res){
