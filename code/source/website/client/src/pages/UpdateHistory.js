@@ -109,7 +109,7 @@ export default function UpdateHistory({userInfo, setUserInfo}){
         <div className="manage-main">
             <NavBar userInfo={userInfo} setUserInfo={setUserInfo}/>
             {!loading && <div className="table-container" id="table-history">
-                <MaterialTable title="List of Admins"
+                <MaterialTable title="Update Covid History"
                     data = {covidHistory}
                     columns = {columns}
                     icons={tableIcons}
