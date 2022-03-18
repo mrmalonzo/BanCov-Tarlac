@@ -17,7 +17,7 @@ const dbName = "bancovTarlac";
 
 const __dirname = path.resolve();
 
-app.use(express.static(path.join(__dirname, '../Client/build')));
+app.use(express.static(path.join(__dirname, './client/build')));
 
 app.use(cookieParser()); //for using cookies
 app.use(express.json()); //allow body parsing
@@ -61,12 +61,13 @@ MongoClient.connect(uri) //connect to the database
         console.log("Currently listening to port " + port);
     });
 
-    // console.log(await admin.findOne({}));
 });
 
 //connect to the routers
 app.use('/admin', admin); // Course APIs
 app.use('/covid', data); // User-related APIs
 
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+}); 
 
